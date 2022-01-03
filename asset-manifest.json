@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/my-app/static/css/main.3ce5105e.chunk.css",
-    "main.js": "/my-app/static/js/main.15dfa6b2.chunk.js",
-    "runtime-main.js": "/my-app/static/js/runtime-main.498006b9.js",
-    "static/js/2.5091b7da.chunk.js": "/my-app/static/js/2.5091b7da.chunk.js",
-    "static/js/3.812b1e8c.chunk.js": "/my-app/static/js/3.812b1e8c.chunk.js",
-    "index.html": "/my-app/index.html",
-    "static/js/2.5091b7da.chunk.js.LICENSE.txt": "/my-app/static/js/2.5091b7da.chunk.js.LICENSE.txt"
+    "main.css": "/coin-avatar/static/css/main.3ce5105e.chunk.css",
+    "main.js": "/coin-avatar/static/js/main.d5dc3443.chunk.js",
+    "runtime-main.js": "/coin-avatar/static/js/runtime-main.a77cd08c.js",
+    "static/js/2.68e5b076.chunk.js": "/coin-avatar/static/js/2.68e5b076.chunk.js",
+    "static/js/3.09c8a58c.chunk.js": "/coin-avatar/static/js/3.09c8a58c.chunk.js",
+    "index.html": "/coin-avatar/index.html",
+    "static/js/2.68e5b076.chunk.js.LICENSE.txt": "/coin-avatar/static/js/2.68e5b076.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.498006b9.js",
-    "static/js/2.5091b7da.chunk.js",
+    "static/js/runtime-main.a77cd08c.js",
+    "static/js/2.68e5b076.chunk.js",
     "static/css/main.3ce5105e.chunk.css",
-    "static/js/main.15dfa6b2.chunk.js"
+    "static/js/main.d5dc3443.chunk.js"
   ]
 }
