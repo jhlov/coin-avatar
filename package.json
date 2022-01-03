@@ -1,6 +1,6 @@
 {
-  "homepage": "https://jhlov.github.io/my-app",
-  "name": "react-project-template",
+  "homepage": "https://jhlov.github.io/coin-avatar",
+  "name": "포텐님의 아바타법 코인 백테스트",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
