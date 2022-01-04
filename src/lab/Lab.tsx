@@ -1,7 +1,12 @@
 import React from "react";
+import { Condition } from "./Condition";
 
 const Lab = () => {
-  return <div>연구소</div>;
+  return (
+    <div>
+      <Condition />
+    </div>
+  );
 };
 
 export { Lab };

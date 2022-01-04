@@ -1,0 +1,35 @@
+@import "./../Common.scss";
+
+.condition {
+  &-main {
+    width: 250px;
+  }
+
+  &-table {
+    overflow-x: auto;
+    font-size: 0.9rem;
+
+    .table th,
+    .table td {
+      padding: 0.25rem 0.75rem;
+    }
+  }
+
+  h2 {
+    font-size: 1rem;
+    text-align: left;
+    margin-bottom: 0.3rem;
+  }
+
+  label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0;
+  }
+
+  .d-flex {
+    .form-group {
+      flex: 1;
+    }
+  }
+}
