@@ -6,6 +6,8 @@
   }
 
   &-table {
+    flex: 1;
+    align-self: flex-start;
     overflow-x: auto;
     font-size: 0.9rem;
 
