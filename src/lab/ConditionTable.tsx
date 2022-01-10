@@ -50,7 +50,7 @@ const ConditionTable = (props: Props) => {
     return [
       {
         dataField: "tier",
-        text: "Tier"
+        text: "티어"
       },
       {
         dataField: "buy_guide",
@@ -78,7 +78,7 @@ const ConditionTable = (props: Props) => {
       },
       {
         dataField: "tier_1_ratio",
-        text: "1Tier 대비"
+        text: "1티어 대비"
       }
     ];
   }, [props.market, props.seed, props.strategy]);
@@ -118,7 +118,8 @@ const ConditionTable = (props: Props) => {
               : `${tierTable[i].sell.value}평단`,
           seed_rate: `${tierTable[i].seed.toFixed(2)}%`,
           seed:
-            utils.intComma(Math.round(props.seed * tierTable[i].seed)) + "원",
+            utils.intComma(Math.round((props.seed * tierTable[i].seed) / 100)) +
+            "원",
           tier_1_ratio:
             i === 0
               ? "0.00%"

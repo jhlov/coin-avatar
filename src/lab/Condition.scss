@@ -1,6 +1,12 @@
 @import "./../Common.scss";
 
 .condition {
+  h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: left;
+  }
+
   &-main {
     width: 250px;
   }

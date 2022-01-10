@@ -26,7 +26,7 @@ const ConditionChart = (props: Props) => {
         height: "300px"
       },
       rangeSelector: {
-        selected: 5,
+        selected: 4,
         inputDateFormat: "%Y-%m-%d",
         inputEnabled: true
       },

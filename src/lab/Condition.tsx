@@ -3,8 +3,19 @@ import { Button, Form } from "react-bootstrap";
 import "./Condition.scss";
 import { ConditionChart } from "./ConditionChart";
 import { ConditionTable } from "./ConditionTable";
+import { getTierTable, TierTableData } from "./tierTable";
 
-const Condition = () => {
+interface Props {
+  onClickTestStart: (
+    market: string,
+    seed: number,
+    tierTable: TierTableData[],
+    startDate: string,
+    endDate: string
+  ) => void;
+}
+
+const Condition = (props: Props) => {
   const [market, setMarket] = useState<string>("BTC");
   const [seed, setSeed] = useState<number>(10000000);
   const [strategy, setStrategy] = useState("7tier");
@@ -27,11 +38,18 @@ const Condition = () => {
   ];
 
   const onClickTestStart = () => {
-    console.log(startDate, endDate);
+    props.onClickTestStart(
+      market,
+      seed,
+      getTierTable(strategy),
+      startDate,
+      endDate
+    );
   };
 
   return (
-    <div className="condition">
+    <div className="condition py-4">
+      <h1>포텐님의 아바타법 코인 백테스트</h1>
       <ConditionChart
         market={market}
         onChangeStartDate={setStartDate}

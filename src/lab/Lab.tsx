@@ -1,10 +1,74 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useRef } from "react";
+import { BacktestResponseData } from "./BacktestResponseData";
 import { Condition } from "./Condition";
+import { Result } from "./Result";
+import { TierTableData } from "./tierTable";
+import { Spinner, Table } from "react-bootstrap";
 
 const Lab = () => {
+  const [loding, setLoding] = useState<boolean>(false);
+  const [responseData, setResponseData] = useState<BacktestResponseData | null>(
+    null
+  );
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onClickTestStart = async (
+    market: string,
+    seed: number,
+    tierTable: TierTableData[],
+    startDate: string,
+    endDate: string
+  ) => {
+    // console.log(JSON.stringify(tierTable));
+    setLoding(true);
+    setResponseData(null);
+
+    onScrollToBottom();
+
+    const res = await axios.post(
+      "https://e21wumxqzk.execute-api.ap-northeast-2.amazonaws.com/default/coin-avatar",
+      {
+        market,
+        seed,
+        tierTable,
+        startDate,
+        endDate
+      }
+    );
+
+    if (res.status === 200) {
+      setResponseData(res.data);
+    }
+
+    setLoding(false);
+  };
+
+  const onScrollToBottom = () => {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth"
+    });
+  };
+
   return (
-    <div>
-      <Condition />
+    <div ref={ref} className="mb-4">
+      <Condition onClickTestStart={onClickTestStart} />
+
+      {loding && (
+        <div className="mt-5">
+          <Spinner animation="border" />
+        </div>
+      )}
+
+      {responseData && (
+        <>
+          <hr />
+          <Result responseData={responseData} />
+        </>
+      )}
     </div>
   );
 };
