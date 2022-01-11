@@ -19,15 +19,15 @@ const ResultTradeTable = (props: Props) => {
       text: "날짜"
     },
     {
+      dataField: "tier",
+      text: "티어"
+    },
+    {
       dataField: "type",
       text: "타입",
       formatter: (cell: string) => {
         return cell === "buy" ? "매수" : "매도";
       }
-    },
-    {
-      dataField: "tier",
-      text: "티어"
     },
     {
       dataField: "price",
