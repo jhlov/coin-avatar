@@ -25,8 +25,8 @@ const Condition = (props: Props) => {
   const marketList = [
     ["비트코인", "BTC"],
     ["이더리움", "ETH"],
-    ["리플", "XRP"],
-    ["에이다", "ADA"]
+    ["리플", "XRP"]
+    // ["에이다", "ADA"]
   ];
 
   const strategyList = [
