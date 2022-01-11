@@ -2,7 +2,7 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighChartsStock from "highcharts/modules/stock";
 import moment from "moment";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { getCoinPriceList } from "./coinPriceData";
 import "./Condition.scss";
 
@@ -15,6 +15,12 @@ interface Props {
 }
 
 const ConditionChart = (props: Props) => {
+  const [init, setInit] = useState<boolean>(false);
+
+  useEffect(() => {
+    setInit(true);
+  }, []);
+
   const chartOptions = useMemo(() => {
     return {
       lang: { thousandsSep: "," },
@@ -26,7 +32,7 @@ const ConditionChart = (props: Props) => {
         height: "300px"
       },
       rangeSelector: {
-        selected: 4,
+        selected: init ? undefined : 4,
         inputDateFormat: "%Y-%m-%d",
         inputEnabled: true
       },
