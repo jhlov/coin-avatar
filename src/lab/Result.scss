@@ -1,26 +1,46 @@
 @import "./../Common.scss";
 
-.card {
-  height: 100%;
-  text-align: left;
+.result {
+  .summary {
+    .summary-right {
+      height: 100%;
 
-  .title {
-    color: #95aac9 !important;
-    font-size: 14px;
-    font-weight: bold;
+      > div {
+        &:nth-child(1),
+        &:nth-child(2) {
+          margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 767px) {
+          margin-bottom: 1.5rem;
+        }
+      }
+    }
   }
 
-  .sub-content {
-    font-size: 12px;
-  }
+  .card {
+    height: 100%;
+    text-align: left;
+    margin-bottom: 1.5rem;
 
-  .table {
-    overflow-x: auto;
-    font-size: 0.9rem;
+    .title {
+      color: #95aac9 !important;
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-    th,
-    td {
-      padding: 0.25rem 0.75rem;
+    .sub-content {
+      font-size: 12px;
+    }
+
+    .table {
+      overflow-x: auto;
+      font-size: 0.9rem;
+
+      th,
+      td {
+        padding: 0.25rem 0.75rem;
+      }
     }
   }
 }

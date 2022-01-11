@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { BacktestResponseData } from "./BacktestResponseData";
 import { Condition } from "./Condition";
 import { Result } from "./Result";
 import { TierTableData } from "./tierTable";
-import { Spinner, Table } from "react-bootstrap";
 
 const Lab = () => {
   const [loding, setLoding] = useState<boolean>(false);
@@ -26,6 +26,9 @@ const Lab = () => {
     setResponseData(null);
 
     onScrollToBottom();
+    setTimeout(() => {
+      onScrollToBottom();
+    }, 100);
 
     const res = await axios.post(
       "https://e21wumxqzk.execute-api.ap-northeast-2.amazonaws.com/default/coin-avatar",

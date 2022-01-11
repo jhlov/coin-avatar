@@ -19,7 +19,7 @@ const Condition = (props: Props) => {
   const [market, setMarket] = useState<string>("BTC");
   const [seed, setSeed] = useState<number>(10000000);
   const [strategy, setStrategy] = useState("7tier");
-  const [startDate, setStartDate] = useState("2018-01-01");
+  const [startDate, setStartDate] = useState("2020-12-31");
   const [endDate, setEndDate] = useState("2021-12-31");
 
   const marketList = [

@@ -1,10 +1,14 @@
+import classNames from "classnames";
 import React, { useMemo } from "react";
 import { Col, Row } from "react-bootstrap";
+import { utils } from "./../utils";
 import { BacktestResponseData } from "./BacktestResponseData";
 import "./Result.scss";
-import { utils } from "./../utils";
-import classNames from "classnames";
-import BootstrapTable from "react-bootstrap-table-next";
+import { ResultAvatarChart } from "./ResultAvatarChart";
+import { ResultAvatarTable } from "./ResultAvatarTable";
+import { ResultMonthlyChart } from "./ResultMonthlyChart";
+import { ResultProductChart } from "./ResultProductChart";
+import { ResultTradeChart } from "./ResultTradeChart";
 
 interface Props {
   responseData?: BacktestResponseData;
@@ -55,133 +59,70 @@ const Result = (props: Props) => {
     return (profit / seed) * 100;
   }, [seed, profit]);
 
-  const tableColumns = [
-    {
-      dataField: "id",
-      text: "ID",
-      hidden: true
-    },
-    {
-      dataField: "datetime",
-      text: "날짜"
-    },
-    {
-      dataField: "type",
-      text: "타입",
-      formatter: (cell: string) => {
-        return cell === "buy" ? "매수" : "매도";
-      }
-    },
-    {
-      dataField: "tier",
-      text: "티어"
-    },
-    {
-      dataField: "price",
-      text: "가격",
-      formatter: (cell: number) => {
-        return `${utils.intComma(cell)}원`;
-      }
-    },
-    {
-      dataField: "count",
-      text: "수량",
-      formatter: (cell: number) => {
-        return utils.intComma(cell.toFixed(5));
-      }
-    },
-    {
-      dataField: "money",
-      text: "금액",
-      formatter: (cell: number) => {
-        return `${utils.intComma(cell)}원`;
-      }
-    },
-    {
-      dataField: "fee",
-      text: "수수료",
-      formatter: (cell: number) => {
-        return `${utils.intComma(cell)}원`;
-      }
-    },
-    {
-      dataField: "profit",
-      text: "실현 수익",
-      formatter: (cell: number) => {
-        return cell ? `${utils.intComma(cell)}원` : "";
-      }
-    }
-  ];
-
-  const tableData = useMemo(() => {
-    return (
-      props.responseData?.trade_list.map((e, i) => ({ ...e, id: i })) ?? []
-    );
-  }, [props]);
-
   return (
-    <div className="py-4">
+    <div className="result py-4">
       <Row className="summary mb-4">
-        <Col>
-          <div className="card">
-            <div className="title">기간</div>
-            <div className="content">{`${props.responseData?.start_date} ~ ${props.responseData?.end_date}`}</div>
-          </div>
+        <Col xs="12" md="6">
+          <Row className="summary-right">
+            <Col xs="12" md="6">
+              <div className="card">
+                <div className="title">기간</div>
+                <div className="content">{`${props.responseData?.start_date} ~ ${props.responseData?.end_date}`}</div>
+              </div>
+            </Col>
+            <Col xs="12" md="6">
+              <div className="card">
+                <div className="title">원금</div>
+                <div className="content">{`${utils.intComma(seed)}원`}</div>
+              </div>
+            </Col>
+            <Col xs="12" md="6">
+              <div className="card">
+                <div className="title">총자산</div>
+                <div className="content">{`${utils.intComma(
+                  totalAssets
+                )}원`}</div>
+                <div className="sub-content">{`(현금: ${utils.intComma(
+                  totalMoney
+                )}원 / 코인: ${utils.intComma(totalCoin.toFixed(3))})`}</div>
+                <div
+                  className={classNames("sub-content", [
+                    totalAssetsRate < 0 ? "blue" : "red"
+                  ])}
+                >{`(수익률 ${utils.intComma(
+                  totalAssetsRate.toFixed(1)
+                )}%)`}</div>
+              </div>
+            </Col>
+            <Col xs="12" md="6">
+              <div className="card">
+                <div className="title">실현 수익</div>
+                <div className="content">{`${utils.intComma(profit)}원`}</div>
+                <div
+                  className={classNames("sub-content", [
+                    profitRate < 0 ? "blue" : "red"
+                  ])}
+                >{`(수익률 ${utils.intComma(profitRate.toFixed(1))}%)`}</div>
+              </div>
+            </Col>
+          </Row>
         </Col>
-        <Col>
-          <div className="card">
-            <div className="title">원금</div>
-            <div className="content">{`${utils.intComma(seed)}원`}</div>
-          </div>
-        </Col>
-        <Col>
-          <div className="card">
-            <div className="title">총자산</div>
-            <div className="content">{`${utils.intComma(totalAssets)}원`}</div>
-            <div className="sub-content">{`(현금: ${utils.intComma(
-              totalMoney
-            )}원 / 코인: ${utils.intComma(totalCoin.toFixed(3))})`}</div>
-            <div
-              className={classNames("sub-content", [
-                totalAssetsRate < 0 ? "blue" : "red"
-              ])}
-            >{`(수익률 ${utils.intComma(totalAssetsRate.toFixed(1))}%)`}</div>
-          </div>
-        </Col>
-        <Col>
-          <div className="card">
-            <div className="title">실현 수익</div>
-            <div className="content">{`${utils.intComma(profit)}원`}</div>
-            <div
-              className={classNames("sub-content", [
-                profitRate < 0 ? "blue" : "red"
-              ])}
-            >{`(수익률 ${utils.intComma(profitRate.toFixed(1))}%)`}</div>
-          </div>
+        <Col xs="12" md="6">
+          <ResultProductChart
+            responseData={props.responseData}
+            totalAssets={totalAssets}
+            totalMoney={totalMoney}
+          />
         </Col>
       </Row>
-      <Row className="mb-4">
-        <Col>
-          <div className="card">
-            <div className="title">월별 실현 수익</div>
-          </div>
-        </Col>
-        <Col>
-          <div className="card">
-            <div className="title">아바타별 실현 수익</div>
-          </div>
-        </Col>
-      </Row>
-      <div className="card">
-        <div className="title mb-2">거래 내역</div>
-        <BootstrapTable
-          keyField="id"
-          columns={tableColumns}
-          data={tableData}
-          bordered={false}
-          striped
-        />
-      </div>
+
+      <ResultMonthlyChart responseData={props.responseData} />
+
+      <ResultAvatarChart responseData={props.responseData} />
+
+      <ResultAvatarTable responseData={props.responseData} />
+
+      <ResultTradeChart responseData={props.responseData} />
     </div>
   );
 };
