@@ -17,6 +17,7 @@ const Lab = () => {
   const onClickTestStart = async (
     market: string,
     seed: number,
+    strategy: string,
     tierTable: TierTableData[],
     startDate: string,
     endDate: string
@@ -35,6 +36,7 @@ const Lab = () => {
       {
         market,
         seed,
+        strategy,
         tierTable,
         startDate,
         endDate

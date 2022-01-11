@@ -9,6 +9,7 @@ interface Props {
   onClickTestStart: (
     market: string,
     seed: number,
+    strategy: string,
     tierTable: TierTableData[],
     startDate: string,
     endDate: string
@@ -41,6 +42,7 @@ const Condition = (props: Props) => {
     props.onClickTestStart(
       market,
       seed,
+      strategy,
       getTierTable(strategy),
       startDate,
       endDate
