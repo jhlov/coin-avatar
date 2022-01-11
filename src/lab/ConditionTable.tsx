@@ -130,7 +130,7 @@ const ConditionTable = (props: Props) => {
   }, [props.market, props.seed, props.strategy]);
 
   return (
-    <div className="card condition-table">
+    <div className="card card-table">
       <BootstrapTable
         keyField="tier"
         columns={tableColumns}

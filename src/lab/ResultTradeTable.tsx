@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
-import { utils } from "./../utils";
+import { utils } from "../utils";
 import { BacktestResponseData } from "./BacktestResponseData";
 
 interface Props {
   responseData?: BacktestResponseData;
 }
 
-const ResultTradeChart = (props: Props) => {
+const ResultTradeTable = (props: Props) => {
   const tableColumns = [
     {
       dataField: "id",
@@ -73,7 +73,7 @@ const ResultTradeChart = (props: Props) => {
   }, [props]);
 
   return (
-    <div className="card">
+    <div className="card card-table">
       <div className="title mb-2">거래 내역</div>
       <BootstrapTable
         keyField="id"
@@ -86,4 +86,4 @@ const ResultTradeChart = (props: Props) => {
   );
 };
 
-export { ResultTradeChart };
+export { ResultTradeTable };

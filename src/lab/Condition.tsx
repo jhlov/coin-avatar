@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import "./Condition.scss";
 import { ConditionChart } from "./ConditionChart";
 import { ConditionTable } from "./ConditionTable";
@@ -56,8 +56,8 @@ const Condition = (props: Props) => {
         onChangeEndDate={setEndDate}
       />
 
-      <div className="d-flex">
-        <div className="condition-main mr-4">
+      <Row>
+        <Col xs="12" md="4" lg="3" className="mb-4">
           <div className="card">
             <Form.Group controlId="market">
               <Form.Label>종목</Form.Label>
@@ -100,15 +100,16 @@ const Condition = (props: Props) => {
 
             <Button onClick={onClickTestStart}>테스트 시작</Button>
           </div>
-        </div>
-
-        <ConditionTable
-          market={market}
-          seed={seed}
-          strategy={strategy}
-          marketList={marketList.map(e => e[1])}
-        />
-      </div>
+        </Col>
+        <Col xs="12" md="8" lg="9" className="mb-4">
+          <ConditionTable
+            market={market}
+            seed={seed}
+            strategy={strategy}
+            marketList={marketList.map(e => e[1])}
+          />
+        </Col>
+      </Row>
     </div>
   );
 };

@@ -20,27 +20,22 @@
 
   .card {
     height: 100%;
-    text-align: left;
     margin-bottom: 1.5rem;
 
     .title {
+      text-align: left;
       color: #95aac9 !important;
       font-size: 14px;
       font-weight: bold;
     }
 
-    .sub-content {
-      font-size: 12px;
+    .content {
+      text-align: left;
     }
 
-    .table {
-      overflow-x: auto;
-      font-size: 0.9rem;
-
-      th,
-      td {
-        padding: 0.25rem 0.75rem;
-      }
+    .sub-content {
+      text-align: left;
+      font-size: 12px;
     }
   }
 }

@@ -61,7 +61,7 @@ const ResultAvatarTable = (props: Props) => {
   }, [props]);
 
   return (
-    <div className="card">
+    <div className="card card-table">
       <div className="title mb-2">아바타 별 자산</div>
       <BootstrapTable
         keyField="id"

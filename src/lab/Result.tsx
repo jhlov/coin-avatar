@@ -8,7 +8,7 @@ import { ResultAvatarChart } from "./ResultAvatarChart";
 import { ResultAvatarTable } from "./ResultAvatarTable";
 import { ResultMonthlyChart } from "./ResultMonthlyChart";
 import { ResultProductChart } from "./ResultProductChart";
-import { ResultTradeChart } from "./ResultTradeChart";
+import { ResultTradeTable } from "./ResultTradeTable";
 
 interface Props {
   responseData?: BacktestResponseData;
@@ -122,7 +122,7 @@ const Result = (props: Props) => {
 
       <ResultAvatarTable responseData={props.responseData} />
 
-      <ResultTradeChart responseData={props.responseData} />
+      <ResultTradeTable responseData={props.responseData} />
     </div>
   );
 };

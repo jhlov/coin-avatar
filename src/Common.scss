@@ -7,10 +7,21 @@ body {
   border-radius: 0.6rem;
   border: 0;
   padding: 1rem;
+
+  &.card-table {
+    overflow-x: auto;
+  }
 }
 
 .table {
   margin-bottom: 0;
+
+  th,
+  td {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.75rem;
+    white-space: nowrap;
+  }
 }
 
 .blue {
