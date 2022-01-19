@@ -53,7 +53,7 @@ const ResultAvatarChart = (props: Props) => {
 
   return (
     <div className="card">
-      <div className="title mb-2">아바타별 실현 수익</div>
+      <div className="title mb-2">티어별 실현 수익</div>
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </div>
   );
