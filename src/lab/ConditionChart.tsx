@@ -58,6 +58,9 @@ const ConditionChart = (props: Props) => {
           }
         }
       },
+      yAxis: {
+        min: 0
+      },
       series: [
         {
           name: props.market,
