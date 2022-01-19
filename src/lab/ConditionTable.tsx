@@ -2,6 +2,7 @@ import Grid from "@toast-ui/react-grid";
 import axios from "axios";
 import _ from "lodash";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Form, Row } from "react-bootstrap";
 import "tui-grid/dist/tui-grid.css";
 import { OptColumn } from "tui-grid/types/options";
 import { TierTableData } from "./../types/TierTableData";
@@ -273,8 +274,79 @@ const ConditionTable = (props: Props) => {
     }
   ];
 
+  const onChangeTier = (newTier: number) => {
+    if (newTier < tier) {
+      if (grid.current) {
+        const gridInstance = (grid.current as Grid).getInstance();
+        const gridData: any = gridInstance.getData();
+
+        const newTierTable: TierTableData[] = gridData
+          .slice(0, newTier)
+          .map((e: any) => ({
+            buy: Number(e.buy_condition),
+            sell: {
+              type: e.sell_condition_type,
+              value: Number(e.sell_condition_value)
+            },
+            seed: Number(e.seed_rate)
+          }));
+
+        setTierTable(newTierTable);
+        setTier(newTier);
+      }
+    } else if (tier < newTier) {
+      if (grid.current) {
+        const gridInstance = (grid.current as Grid).getInstance();
+        const gridData: any = gridInstance.getData();
+
+        const lastData = {
+          buy: Number(gridData[gridData.length - 1].buy_condition),
+          sell: {
+            type: gridData[gridData.length - 1].sell_condition_type,
+            value: Number(gridData[gridData.length - 1].sell_condition_value)
+          },
+          seed: Number(gridData[gridData.length - 1].seed_rate)
+        };
+
+        const newTierTable: TierTableData[] = gridData
+          .map((e: any) => ({
+            buy: Number(e.buy_condition),
+            sell: {
+              type: e.sell_condition_type,
+              value: Number(e.sell_condition_value)
+            },
+            seed: Number(e.seed_rate)
+          }))
+          .concat(Array(newTier - tier).fill({ ...lastData }));
+
+        setTierTable(newTierTable);
+        setTier(newTier);
+      }
+    }
+  };
+
   return (
     <div className="card card-table">
+      {props.strategy === "custom" && (
+        <Form.Group className="align-items-center" as={Row} controlId="tier">
+          <Form.Label className="mx-4">티어</Form.Label>
+          <Form.Control
+            className="tier-select"
+            as="select"
+            onChange={e => onChangeTier(Number(e.target.value))}
+            value={tier}
+          >
+            {Array(50)
+              .fill(0)
+              .map((_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+          </Form.Control>
+        </Form.Group>
+      )}
+
       <Grid
         ref={grid}
         data={tableData}

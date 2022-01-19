@@ -59,6 +59,12 @@ const Condition = (props: Props) => {
             seed: Number(e.seed_rate)
           }));
 
+        // 시드 합 체크
+        if (100 < tierData.reduce((p, c) => p + c.seed, 0)) {
+          alert("시드의 합이 100을 넘을 수 없습니다.");
+          return;
+        }
+
         props.onClickTestStart(
           market,
           seed,
