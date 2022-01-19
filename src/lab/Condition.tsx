@@ -39,6 +39,7 @@ const Condition = (props: Props) => {
     ["뉴포텐17", "new_poten_17tier"],
     ["뉴포텐20", "new_poten_20tier"],
     ["삭제포텐20", "del_poten_20tier"],
+    ["삭제포텐26", "del_poten_26tier"],
     ["커스텀", "custom"]
   ];
 
