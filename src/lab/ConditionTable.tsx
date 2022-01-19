@@ -64,11 +64,13 @@ const ConditionTable = (props: Props) => {
 
       const gridInstance = (grid.current as Grid).getInstance();
       const gridData = gridInstance.getData();
-      Array(gridData.length)
-        .fill(0)
-        .forEach((_, i) => {
-          const temp = gridInstance.getValue(i, "buy_condition");
-        });
+      if (props.strategy === "custom") {
+        Array(gridData.length)
+          .fill(0)
+          .forEach((_, i) => {
+            const temp = gridInstance.getValue(i, "buy_condition");
+          });
+      }
 
       return Math.round(
         gridData
@@ -99,11 +101,13 @@ const ConditionTable = (props: Props) => {
         return 0;
       }
 
-      Array(gridData.length)
-        .fill(0)
-        .forEach((_, i) => {
-          const temp = gridInstance.getValue(i, "seed_rate");
-        });
+      if (props.strategy === "custom") {
+        Array(gridData.length)
+          .fill(0)
+          .forEach((_, i) => {
+            const temp = gridInstance.getValue(i, "seed_rate");
+          });
+      }
 
       return Math.round((props.seed * gridData[i].seed_rate) / 100);
     }
