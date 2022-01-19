@@ -74,7 +74,7 @@ const ConditionChart = (props: Props) => {
         }
       ]
     };
-  }, [props.market]);
+  }, [init, props]);
 
   return (
     <div className="card mb-3">

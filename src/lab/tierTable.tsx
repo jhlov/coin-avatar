@@ -1,11 +1,4 @@
-export interface TierTableData {
-  buy: number;
-  sell: {
-    type: "yield" | "tier";
-    value: number;
-  };
-  seed: number;
-}
+import { TierTableData } from "../types/TierTableData";
 
 const getTierTable = (strategy: string): TierTableData[] => {
   if (strategy === "7tier") {

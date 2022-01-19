@@ -60,7 +60,7 @@ const ResultMonthlyChart = (props: Props) => {
         }
       ]
     };
-  }, [props]);
+  }, [props, categories]);
 
   return (
     <div className="card">

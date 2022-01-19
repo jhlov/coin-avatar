@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import { TierTableData } from "../types/TierTableData";
 import { BacktestResponseData } from "./BacktestResponseData";
 import { Condition } from "./Condition";
 import { Result } from "./Result";
-import { TierTableData } from "./tierTable";
 
 const Lab = () => {
   const [loding, setLoding] = useState<boolean>(false);

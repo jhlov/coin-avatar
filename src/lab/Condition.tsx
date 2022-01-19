@@ -1,9 +1,11 @@
+import Grid from "@toast-ui/react-grid";
+import _ from "lodash";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { TierTableData } from "./../types/TierTableData";
 import "./Condition.scss";
 import { ConditionChart } from "./ConditionChart";
 import { ConditionTable } from "./ConditionTable";
-import { getTierTable, TierTableData } from "./tierTable";
 
 interface Props {
   onClickTestStart: (
@@ -22,6 +24,7 @@ const Condition = (props: Props) => {
   const [strategy, setStrategy] = useState("7tier");
   const [startDate, setStartDate] = useState("2020-12-31");
   const [endDate, setEndDate] = useState("2021-12-31");
+  const [grid, setGrid] = useState<Grid | null>(null);
 
   const marketList = [
     ["비트코인", "BTC"],
@@ -35,18 +38,38 @@ const Condition = (props: Props) => {
     ["뉴포텐13", "new_poten_13tier"],
     ["뉴포텐17", "new_poten_17tier"],
     ["뉴포텐20", "new_poten_20tier"],
-    ["삭제포텐20", "del_poten_20tier"]
+    ["삭제포텐20", "del_poten_20tier"],
+    ["커스텀", "custom"]
   ];
 
   const onClickTestStart = () => {
-    props.onClickTestStart(
-      market,
-      seed,
-      strategy,
-      getTierTable(strategy),
-      startDate,
-      endDate
-    );
+    if (grid) {
+      const err = grid.getInstance().validate();
+      if (_.isEmpty(err)) {
+        const tierData: TierTableData[] = grid
+          .getInstance()
+          .getData()
+          .map((e: any) => ({
+            buy: Number(e.buy_condition),
+            sell: {
+              type: e.sell_condition_type,
+              value: Number(e.sell_condition_value)
+            },
+            seed: Number(e.seed_rate)
+          }));
+
+        props.onClickTestStart(
+          market,
+          seed,
+          strategy,
+          tierData,
+          startDate,
+          endDate
+        );
+      } else {
+        alert("잘못된 데이터가 있습니다.");
+      }
+    }
   };
 
   return (
@@ -109,6 +132,7 @@ const Condition = (props: Props) => {
             seed={seed}
             strategy={strategy}
             marketList={marketList.map(e => e[1])}
+            setGrid={setGrid}
           />
         </Col>
       </Row>
